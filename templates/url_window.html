@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Welcome to FlaskShortener {% endblock %}</h1>
+    <form method="post">
+    <div>
+        <label>URL</label>
+        <a href="{{ short_url }}" name="url"
+               class="form-control"
+               autofocus>{{ short_url }}</a>
+    </div>
+    </form>
+
+{% endblock %}

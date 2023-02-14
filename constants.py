@@ -1,6 +1,11 @@
 import os
+from dotenv import load_dotenv
 
-POSTGRES_HOST = os.environ.get('POSTGRES_HOST')
-POSTGRES_PORT = os.environ.get('POSTGRES_PORT')
-POSTGRES_USERNAME = os.environ.get('POSTGRES_USERNAME')
-POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD')
+load_dotenv()
+
+
+POSTGRES_HOST = os.getenv('POSTGRES_HOST', '')
+POSTGRES_PORT = os.getenv('POSTGRES_PORT', 5432)
+POSTGRES_USERNAME = os.getenv('POSTGRES_USERNAME', '')
+POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD', '')
+POSTGRES_DB_NAME = os.getenv('POSTGRES_DB_NAME', '')

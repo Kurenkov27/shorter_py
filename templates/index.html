@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Welcome to FlaskShortener {% endblock %}</h1>
+    <form method="post">
+    <div class="form-group">
+        <label for="url">URL</label>
+        <input type="url" name="url"
+               placeholder="URL to shorten" class="form-control"
+               value="{{ request.form['url'] }}" autofocus></input>
+        <label for="url">Days to expire</label>
+        <input type="number" name="days"
+               placeholder="Number of days till url expires" class="form-control"
+               value="{{ request.form['days'] if request.form['days'] else 90 }}" autofocus></input>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    </form>
+
+{% endblock %}
