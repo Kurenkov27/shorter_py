@@ -24,7 +24,7 @@ def index():
 
     # Check days range
     if expiration_days not in range(0, 365):
-        return "Link can't be available more than 1 year", 400
+        return "Days to expire should be within 0-365 days", 400
 
     # Generate a unique short URL
     expiration_date_time = datetime.datetime.now() + datetime.timedelta(days=expiration_days)
