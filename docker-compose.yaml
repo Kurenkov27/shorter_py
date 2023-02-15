@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: python app.py
+    command: python main.py
     restart: always
     ports:
       - 5003:5000

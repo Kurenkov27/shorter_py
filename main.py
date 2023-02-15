@@ -1,4 +1,5 @@
 import datetime
+from gevent.pywsgi import WSGIServer
 
 from flask import Flask, render_template, request, redirect
 
@@ -21,6 +22,10 @@ def index():
     original_url = request.form.get('url')
     expiration_days = int(request.form.get('days'))
 
+    # Check days range
+    if expiration_days not in range(0, 365):
+        return "Link can't be available more than 1 year", 400
+
     # Generate a unique short URL
     expiration_date_time = datetime.datetime.now() + datetime.timedelta(days=expiration_days)
     current_timestamp = int(expiration_date_time.timestamp())
@@ -36,7 +41,6 @@ def index():
     # Store the mapping in the url_mapping dictionary
     url_mapping[short_url] = (original_url, expiration_date_time)
 
-    #return f'Your URL: {request.base_url + short_url}'
     return render_template('url_window.html', short_url=request.base_url + short_url)
 
 
@@ -57,5 +61,6 @@ def redirect_url(short_url):
     return redirect(original_url)
 
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    http_server = WSGIServer(('', 5000), app)
+    http_server.serve_forever()
