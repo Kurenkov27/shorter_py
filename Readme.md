@@ -4,3 +4,4 @@ For local run:
 2. Run command `docker-compose up --build -d`
 3. Go to `http://localhost:5003`
 
+Please be aware: Maximum URL length should not exeed 450 symbols
